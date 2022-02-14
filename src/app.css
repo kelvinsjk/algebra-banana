@@ -1,0 +1,64 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	font-size: 21px;
+	/** dark mode override hack: TODO: CHANGE THIS */
+	background-color: white;
+	color: black;
+	--bc: 215 27.9% 16.9%;
+	--n: 219 14.1% 27.8%;
+	/** tailwind presets */
+	--yellow-100: #fef9c3;
+	--blue-100: #dbeafe;
+	--red-500-a: #ef444450; 
+	--amber-500-a: #f59e0b50; 
+	--green-500-a: #22c55e50; 
+	--correct-color: var(--green-500-a);
+	--partial-color: var(--amber-500-a);
+	--wrong-color:   var(--red-500-a);
+	--qn-bg: var(--yellow-100);
+	--ex-bg: var(--blue-100);
+}
+
+.correct {
+	background: var(--correct-color) !important;
+}
+.partial {
+	background: var(--partial-color) !important;
+}
+.wrong {
+	background: var(--wrong-color) !important;
+}
+
+body {
+	min-height: 100vh;
+	margin: 0;
+}
+
+.full-bleed {
+	width: 100vw;
+}
+
+.question-container {
+	background: var(--qn-bg);
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin-top: 2em;
+}
+.example-container {
+	background: var(--ex-bg);
+	padding-top: 1em;
+	padding-bottom: 1em;
+	margin: 2em 0;
+}
+
+.flex-center {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	max-width: 100%;
+}
