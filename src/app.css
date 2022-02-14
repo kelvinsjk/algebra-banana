@@ -13,12 +13,12 @@
 	/** tailwind presets */
 	--yellow-100: #fef9c3;
 	--blue-100: #dbeafe;
-	--red-500-a: #ef444450; 
-	--amber-500-a: #f59e0b50; 
-	--green-500-a: #22c55e50; 
+	--red-500-a: #ef444450;
+	--amber-500-a: #f59e0b50;
+	--green-500-a: #22c55e50;
 	--correct-color: var(--green-500-a);
 	--partial-color: var(--amber-500-a);
-	--wrong-color:   var(--red-500-a);
+	--wrong-color: var(--red-500-a);
 	--qn-bg: var(--yellow-100);
 	--ex-bg: var(--blue-100);
 }
@@ -52,7 +52,7 @@ body {
 	background: var(--ex-bg);
 	padding-top: 1em;
 	padding-bottom: 1em;
-	margin: 2em 0;
+	margin: 2em 0 0;
 }
 
 .flex-center {
@@ -61,4 +61,9 @@ body {
 	justify-content: center;
 	align-items: center;
 	max-width: 100%;
+}
+
+.emphasis {
+	font-style: italics;
+	font-weight: 700;
 }
