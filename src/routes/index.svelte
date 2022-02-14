@@ -4,7 +4,7 @@
 
 <script lang="ts">
 	import { math } from '$lib/math';
-	import FractionInput from '$lib/mathlive-inputs/FractionInput.svelte';
+	import FractionInput from '$lib/FractionInput/FractionInput.svelte';
 </script>
 
 <svelte:head>
