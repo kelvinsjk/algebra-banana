@@ -3,11 +3,11 @@
 </script>
 
 <script lang="ts">
-	import { math, display } from '$lib/math';
-	import { slide, fade } from 'svelte/transition';
+	import { math } from '$lib/math';
+	import { fade } from 'svelte/transition';
 	import {flip} from 'svelte/animate';
 	import FractionInput from '$lib/FractionInput/FractionInput.svelte';
-	import { Fraction, getRandomInt, Polynomial, Term, Expression } from 'mathlify';
+	import { Fraction, getRandomInt } from 'mathlify';
 	import QnTaskbar from '$lib/QnTaskbar/index.svelte';
 	import QnReview from '$lib/QnReview/index.svelte';
 	import {generateQn} from './_logic';

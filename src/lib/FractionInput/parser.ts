@@ -86,7 +86,7 @@ function isFraction(x: string): [boolean, Fraction?, boolean?] {
 	return [true, fraction, simplified];
 }
 function isDecimal(x: string): [boolean, Fraction?] {
-	const regex = /(-?\d*)(\.)(\d+)/;
+	const regex = /^(-?\d*)(\.)(\d+)/;
 	const match = x.match(regex);
 	if (match === null) {
 		return [false];
