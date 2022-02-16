@@ -14,7 +14,7 @@
 			{:else if marks === 1}
 				✅ ❌ While numerically correct, we should further simplify our answer to the simplest form.
 			{:else}
-				❌ Incorrect. Try again!
+				❌ Not quite. Try again!
 			{/if}
 		</section>
 
