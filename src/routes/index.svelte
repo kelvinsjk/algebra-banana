@@ -5,6 +5,7 @@
 <script lang="ts">
 	import { math } from '$lib/math';
 	import FractionInput from '$lib/FractionInput/FractionInput.svelte';
+	import ExpressionInput from '$lib/ExpressionInput/ExpressionInput.svelte';
 </script>
 
 <svelte:head>
@@ -20,7 +21,8 @@
 	<a
 		class="btn btn-primary"
 		sveltekit:prefetch
-		href="/01-algebraic-expressions-i/01-evaluate-expressions/exercise">Evalutate expressions exercise</a
+		href="/01-algebraic-expressions-i/01-evaluate-expressions/exercise"
+		>Evalutate expressions exercise</a
 	>
 	<a
 		class="btn btn-primary"
@@ -38,4 +40,5 @@
 	</p>
 
 	<FractionInput />
+	<ExpressionInput />
 </section>
