@@ -12,7 +12,7 @@
 			{#if marks === 2}
 				✅ ✅ Correct! Well done!
 			{:else if marks === 1}
-				✅ ❌ While numerically correct, we should further simplify our answer to the simplest form.
+				✅ ❌ While technically correct, we can simplify our answer further.
 			{:else}
 				❌ Not quite. Try again!
 			{/if}

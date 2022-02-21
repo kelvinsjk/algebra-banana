@@ -10,6 +10,6 @@
 
 <section id="overlay" class="flex flex-row justify-center">
 	<Options on:newQn {options} bind:randomMode bind:selectedIndex />
-	<div class="divider divider-vertical mx-2" />
+	<div class="divider divider-horizontal mx-4" />
 	<Score {score} />
 </section>

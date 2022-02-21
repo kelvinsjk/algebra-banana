@@ -7,7 +7,9 @@
 	<div class="btn-group">
 		{#each options as option, i}
 			<button
-				class="btn btn-sm"
+				class="btn"
+				class:btn-sm={options.length < 3}
+				class:btn-xs={options.length >= 3}
 				class:btn-outline={!(i === selectedIndex)}
 				class:btn-primary={i === selectedIndex}
 				on:click={async () => {
