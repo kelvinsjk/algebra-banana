@@ -7,7 +7,7 @@
 <header class="text-center">
 	<a sveltekit:prefetch href="/">Home</a>
 </header>
-<main class="bg-stone-100">
+<main class="bg-stone-100 grid items-end">
 	<slot />
 </main>
 <footer>Footer</footer>
@@ -15,7 +15,7 @@
 <style>
 	main {
 		min-height: 100vh;
-		max-width: 100vw;
+		max-width: 100%;
 	}
 	footer {
 		min-height: 50vw;

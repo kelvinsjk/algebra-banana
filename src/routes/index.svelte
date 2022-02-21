@@ -16,23 +16,33 @@
 	<a
 		class="btn btn-primary"
 		sveltekit:prefetch
-		href="/01-algebraic-expressions-i/01-evaluate-expressions/example">Evalutate expressions</a
+		href="/01-expressions/01-evaluate-expressions/example">Evalutate expressions</a
 	>
 	<a
 		class="btn btn-primary"
 		sveltekit:prefetch
-		href="/01-algebraic-expressions-i/01-evaluate-expressions/exercise"
+		href="/01-expressions/01-evaluate-expressions/exercise"
 		>Evalutate expressions exercise</a
 	>
 	<a
 		class="btn btn-primary"
 		sveltekit:prefetch
-		href="/01-algebraic-expressions-i/02-like-terms/example">Like terms</a
+		href="/01-expressions/02-like-terms/example">Like terms</a
 	>
 	<a
 		class="btn btn-primary"
 		sveltekit:prefetch
-		href="/01-algebraic-expressions-i/02-like-terms/exercise">Like terms</a
+		href="/01-expressions/02-like-terms/exercise">Like terms exercise</a
+	>
+	<a
+		class="btn btn-primary"
+		sveltekit:prefetch
+		href="/01-expressions/03-expansion/example">Expansion</a
+	>
+	<a
+		class="btn btn-primary"
+		sveltekit:prefetch
+		href="/01-expressions/03-expansion/exercise">Expansion Exercise</a
 	>
 
 	<p>
