@@ -57,8 +57,12 @@
 
 <article class="prose flex-center mb-8">
 	<h1 class="mt-8 text-center">{title}</h1>
-	<section id="theory-container" class="theory-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Theory</h2>
+	<section
+		aria-labelledby="theory"
+		id="theory-container"
+		class="theory-container flex-center full-bleed px-2"
+	>
+		<h2 id="theory" class="mt-0">Theory</h2>
 		<p class="text-center max-w-prose">
 			<span class="emphais">Algebraic expression</span> can be broken up into
 			<span class="emphasis">terms</span>
@@ -100,8 +104,12 @@
 		</p>
 	</section>
 	<ExamplePicker {options} bind:selectedIndex />
-	<section id="example-container" class="question-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Illustrated Example</h2>
+	<section
+		aria-labelledby="example"
+		id="example-container"
+		class="question-container flex-center full-bleed px-2"
+	>
+		<h2 id="example" class="mt-0">Illustrated Example</h2>
 		{#if example1}
 			<p
 				class="text-center max-w-prose"
@@ -126,8 +134,12 @@
 		{/if}
 	</section>
 
-	<section id="solution-container" class="example-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Solution</h2>
+	<section
+		aria-labelledby="solution"
+		id="solution-container"
+		class="example-container flex-center full-bleed px-2"
+	>
+		<h2 id="solution" class="mt-0">Solution</h2>
 		{#if example1}
 			<p transition:scale|local class="text-center max-w-prose">
 				Since

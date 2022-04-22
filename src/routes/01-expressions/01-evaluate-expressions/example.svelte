@@ -69,8 +69,12 @@
 
 <article class="prose flex-center mb-8">
 	<h1 class="mt-8 text-center">{title}</h1>
-	<section id="theory-container" class="theory-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Theory</h2>
+	<section
+		aria-labelledby="theory"
+		id="theory-container"
+		class="theory-container flex-center full-bleed px-2"
+	>
+		<h2 id="theory" class="mt-0">Theory</h2>
 		<p class="text-center max-w-prose">
 			We use symbols and letters like {@html math('x')} and {@html math('y')} to represent unknown numbers
 			in algebra. These symbols are called <span class="emphasis">variables</span>.
@@ -85,15 +89,23 @@
 			{@html math('3')} in {@html math('2x')} to get {@html math('2(3)=6')}.
 		</p>
 	</section>
-	<section id="example-container" class="question-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Illustrated Example</h2>
+	<section
+		aria-labelledby="example"
+		id="example-container"
+		class="question-container flex-center full-bleed px-2"
+	>
+		<h2 id="example" class="mt-0">Illustrated Example</h2>
 		<p class="text-center max-w-prose">
 			Evaluate {@html math('3x-2')} when {@html math('x=5.')}
 		</p>
 	</section>
 
-	<section id="solution-container" class="example-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Solution</h2>
+	<section
+		aria-labelledby="solution"
+		id="solution-container"
+		class="example-container flex-center full-bleed px-2"
+	>
+		<h2 id="solution" class="mt-0">Solution</h2>
 		<p class="text-center max-w-prose">
 			We replace <span class="text-red-600">{@html math('x')}</span> with
 			<span class="text-red-600">{@html math('5')}</span> and evaluate the result.

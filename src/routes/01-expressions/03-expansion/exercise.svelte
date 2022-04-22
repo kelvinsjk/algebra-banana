@@ -11,7 +11,9 @@
 	import ExpressionInput from '$lib/ExpressionInput/ExpressionInput.svelte';
 	import { generateQn, assignMarks, Coefficients, generateNewVariables } from './_logic';
 
-	const title = 'Combining Like Terms';
+	const title = 'Algebraic Expansion';
+	const nextSectionName = 'Algebraic Equations';
+	const nextSectionSlug = '/02-equations/01-introduction';
 
 	// qn props
 	export let variables: [number, number, number, number, number, number, number, number, boolean];
@@ -76,13 +78,14 @@
 	<h1 class="mt-8 text-center">{title}</h1>
 	<QnTaskbar on:newQn={newQn} {options} bind:randomMode bind:selectedIndex {score} />
 	<section
+		aria-labelledby="question"
 		id="question-container"
 		class="question-container flex-center full-bleed px-2"
 		class:correct={marks === 2}
 		class:partial={marks === 1}
 		class:wrong={marks === 0}
 	>
-		<h2 class="mt-0">Question</h2>
+		<h2 id="question" class="mt-0">Question</h2>
 		<p class="text-center max-w-prose">Expand and simplify the following expression:</p>
 		<div class="flex flex-col text-center mb-0 max-w-prose h-14 -mb-7">
 			{#key qn}
@@ -129,8 +132,8 @@
 
 <nav class="flex flex-initial items-end justify-end">
 	<div class="px-4 py-2 bg-green-100">
-		<a class="underline" rel="prefetch" href="../../02-equations/01-introduction">
-			&raquo; Expansion &raquo;
+		<a class="underline" rel="prefetch" href={nextSectionSlug}>
+			&raquo; {nextSectionName} &raquo;
 		</a>
 	</div>
 </nav>

@@ -91,13 +91,14 @@
 	<h1 class="mt-8 text-center">{title}</h1>
 	<QnTaskbar on:newQn={newQn} {options} bind:randomMode bind:selectedIndex {score} />
 	<section
+		aria-labelledby="question"
 		id="question-container"
 		class="question-container flex-center full-bleed px-2"
 		class:correct={marks === 2}
 		class:partial={marks === 1}
 		class:wrong={marks === 0}
 	>
-		<h2 class="mt-0">Question</h2>
+		<h2 id="question" class="mt-0">Question</h2>
 		<p class="text-center max-w-prose">Simplify the following expression:</p>
 		<div class="flex flex-col text-center mb-0 max-w-prose h-14 -mb-7">
 			{#key qn}
@@ -145,7 +146,7 @@
 <nav class="flex flex-initial items-end justify-end">
 	<div class="px-4 py-2 bg-green-100">
 		<a class="underline" rel="prefetch" href="../03-expansion/example">
-			&raquo; Expansion &raquo;
+			&raquo; Algebraic Expansion &raquo;
 		</a>
 	</div>
 </nav>

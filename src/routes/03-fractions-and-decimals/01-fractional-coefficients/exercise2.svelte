@@ -4,39 +4,41 @@
 
 <script lang="ts">
 	import { math } from '$lib/math';
-	import { fade } from 'svelte/transition';
-	import { flip } from 'svelte/animate';
-	import FractionInput from '$lib/FractionInput/FractionInput.svelte';
-	import { Fraction, getRandomInt } from 'mathlify';
+	import { slide, fade } from 'svelte/transition';
+	import { Fraction, getRandomInt, JSONParse, Term } from 'mathlify';
 	import QnTaskbar from '$lib/QnTaskbar/index.svelte';
 	import QnReview from '$lib/QnReview/index.svelte';
-	import { generateQn } from './_logic';
+	import FractionInput from '$lib/FractionInput/FractionInput.svelte';
+	import { generateQn, assignMarks, generateNewVariables } from './_logic2';
 
-	const title = 'Evaluating Expressions';
+	const title = 'Solving Linear Equations With Decimal Coefficients';
+	const nextSectionName = 'Adding Algebraic Fractions';
+	const nextSectionSlug = '../02-addition-and-subtraction/example';
 
 	// qn props
-	export let a: number;
-	export let b: number;
-	export let x: number;
-	export let y: number;
+	export let variables: [
+		number,
+		number,
+		number,
+		number,
+		number,
+		number,
+		number,
+		number,
+		boolean,
+		boolean,
+		boolean,
+		boolean
+	];
 	export let level: number;
 
 	// qn setup
-	let { qn, answer, working, xSub, ySub } = generateQn(a, b, x, y, level);
-
-	const qnParts = [
-		{ content: 'Evaluate', classes: '' },
-		{ content: '', classes: '' },
-		{ content: 'when', classes: '' },
-		{ content: '', classes: '' },
-		{ content: 'and', classes: '' },
-		{ content: '', classes: '' }
-	];
+	let { qn, answer, working } = generateQn(...variables, level);
 
 	// mode and score setup
 	let randomMode = true;
 	let score = 0;
-	let marks: number;
+	let marks: number = undefined;
 
 	// setup for qn state
 	let attempt: Fraction = undefined;
@@ -46,48 +48,34 @@
 	let disabled = false;
 
 	// setup for choice of level
-	const options = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+	const options = ['&#9733;', '&#9733;&#9733;'];
 	let selectedIndex = level;
 	$: level = selectedIndex;
-
-	function generateNewVariables(level: number): [number, number, number, number] {
-		const avoid = level === 4 ? [0] : [];
-		a = getRandomInt(-9, 9, { avoid: [0] });
-		b = getRandomInt(-9, 9, { avoid: [0] });
-		x = getRandomInt(-9, 9, { avoid });
-		y = getRandomInt(-9, 9, { avoid });
-		return [a, b, x, y];
-	}
 
 	function newQn(): void {
 		// generate variables
 		if (randomMode) {
-			selectedIndex = getRandomInt(0, 6);
+			selectedIndex = getRandomInt(0, 1);
 			level = selectedIndex;
 		}
-		const variables = generateNewVariables(level);
 		// update qn
-		({ qn, answer, working, xSub, ySub } = generateQn(...variables, level));
+		({ qn, answer, working } = generateQn(...generateNewVariables(level), level));
 		// reset qn
-		[attempt, simplified, marks, invalid, submitted, disabled] = [
-			undefined,
-			undefined,
+		[attempt, invalid, simplified, submitted, disabled, marks] = [
 			undefined,
 			true,
+			undefined,
 			false,
-			false
+			false,
+			undefined
 		];
 	}
 
 	function checkAnswer(): void {
+		marks = assignMarks(attempt, answer, simplified);
+		score += marks;
 		submitted = true;
 		disabled = true;
-		if (attempt.isEqualTo(answer)) {
-			marks = simplified ? 2 : 1;
-			score += marks;
-		} else {
-			marks = 0;
-		}
 	}
 </script>
 
@@ -99,40 +87,25 @@
 	<h1 class="mt-8 text-center">{title}</h1>
 	<QnTaskbar on:newQn={newQn} {options} bind:randomMode bind:selectedIndex {score} />
 	<section
-		aria-labelledby="question"
 		id="question-container"
 		class="question-container flex-center full-bleed px-2"
 		class:correct={marks === 2}
 		class:partial={marks === 1}
 		class:wrong={marks === 0}
 	>
-		<h2 id="question" class="mt-0">Question</h2>
-		<div class="flex text-center mb-0 max-w-prose gap-2 flex-wrap justify-center">
-			{#each qnParts as qnPart, i (i)}
-				<div animate:flip={{ duration: 400 }} class={qnPart.classes}>
-					{qnPart.content}
-					{#if i === 1}
-						<div>
-							{@html qn}
-						</div>
-					{:else if i === 3}
-						<div>
-							{@html xSub}
-						</div>
-					{:else if i === 5}
-						<div>
-							{@html ySub}
-						</div>
-					{/if}
+		<h2 class="mt-0">Question</h2>
+		<p class="text-center max-w-prose">Solve the following equation:</p>
+		<div class="flex flex-col text-center mb-0 max-w-prose custom-height">
+			{#key qn}
+				<div transition:slide|local>
+					{@html qn}
 				</div>
-			{/each}
+			{/key}
 		</div>
 		<div class="qn max-w-prose flex-center p-4 gap-4">
 			<div id="answer-input" class="flex items-center h-16">
-				<div>
-					{@html math('x = ')}
-				</div>
 				<FractionInput
+					name={'x='}
 					bind:value={attempt}
 					bind:invalid
 					bind:simplified
@@ -166,8 +139,15 @@
 
 <nav class="flex flex-initial items-end justify-end">
 	<div class="px-4 py-2 bg-green-100">
-		<a class="underline" rel="prefetch" href="../02-like-terms/example">
-			&raquo; Combining like terms &raquo;
+		<a class="underline" rel="prefetch" href={nextSectionSlug}>
+			&raquo; {nextSectionName} &raquo;
 		</a>
 	</div>
 </nav>
+
+<style>
+	.custom-height {
+		height: 8.3em;
+		margin-bottom: -4.15em;
+	}
+</style>

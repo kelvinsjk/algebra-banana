@@ -3,7 +3,7 @@
 	export let selectedIndex: number = 0;
 </script>
 
-<section id="overlay" class="flex flex-row justify-center mt-8">
+<aside title="example-picker" id="overlay" class="flex flex-row justify-center mt-8">
 	<div class="btn-group">
 		{#each options as option, i}
 			<button
@@ -22,4 +22,4 @@
 			</button>
 		{/each}
 	</div>
-</section>
+</aside>

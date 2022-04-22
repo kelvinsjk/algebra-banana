@@ -1,84 +1,9 @@
 <script lang="ts">
 	import { math } from '$lib/math';
-	import { slide, scale, crossfade } from 'svelte/transition';
-	import ExamplePicker from '$lib/ExamplePicker/index.svelte';
-	const [send, receive] = crossfade({ duration: 700 });
-
-	let selectedIndex = 0;
-	const options = ['Example 1', 'Example 2', 'Example 3'];
-	let initialized = false;
-	let example1 = true;
-	let example2 = false;
-	let example3 = false;
-	let pending = 0;
 
 	const title = 'Algebraic Equations';
-
-	let step1Start = false;
-	let step1End = false;
-	let step2 = false;
-	let final = false;
-	let buttonText = 'show answer';
-
-	$: closeExample(selectedIndex);
-
-	function closeExample(i: number): void {
-		if (!initialized) {
-			initialized = true;
-			return;
-		}
-		example1 = false;
-		example2 = false;
-		example3 = false;
-		pending = i;
-		resetExample();
-	}
-	function startExample(): void {
-		if (pending === 0) {
-			example1 = true;
-		} else if (pending === 1) {
-			example2 = true;
-		} else if (pending === 2) {
-			example3 = true;
-		}
-	}
-
-	function resetExample(): void {
-		step1Start = false;
-		step1End = false;
-		step2 = false;
-		final = false;
-		buttonText = 'show answer';
-	}
-
-	function clickButton(): void {
-		if (final) {
-			resetExample();
-			return;
-		}
-		if (selectedIndex === 0 || selectedIndex === 1) {
-			step1Start = !step1Start;
-			setTimeout(() => {
-				step1End = !step1End;
-				setTimeout(() => {
-					final = true;
-					buttonText = 'reset';
-				}, 900);
-			}, 900);
-		} else {
-			step1Start = !step1Start;
-			setTimeout(() => {
-				step1End = !step1End;
-				setTimeout(() => {
-					step2 = true;
-					setTimeout(() => {
-						final = true;
-						buttonText = 'reset';
-					}, 900);
-				}, 900);
-			}, 900);
-		}
-	}
+	const nextSectionName = 'Addition and subtraction';
+	const nextSectionSlug = './02-manipulation/addition-and-subtraction';
 </script>
 
 <svelte:head>
@@ -87,8 +12,12 @@
 
 <article class="prose flex-center mb-8">
 	<h1 class="mt-8 text-center">{title}</h1>
-	<section id="theory-container" class="theory-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Theory</h2>
+	<section
+		aria-labelledby="theory"
+		id="theory-container"
+		class="theory-container flex-center full-bleed px-2"
+	>
+		<h2 id="theory" class="mt-0">Introduction</h2>
 		<p class="text-center max-w-prose">
 			So far we have been working with <span class="emphasis">expressions</span> which represent
 			quantities. For example, we could let {@html math('x')} represent the cost of a pencil and {@html math(
@@ -107,14 +36,45 @@
 			)}
 		</p>
 	</section>
+	<section
+		aria-labelledby="example"
+		id="example-container"
+		class="example-container flex-center full-bleed px-2"
+	>
+		<h2 id="example" class="mt-0">Algebraic Manipulation</h2>
+		<div class="text-center max-w-prose">
+			We work with algebraic equations by <span class="emphasis">manipulating</span>
+			them to get <span class="emphasis">equivalent</span> equations. There are three basic rules we
+			can use to manipulate equations:
+			<ul class="text-left">
+				<li>
+					<span class="emphasis">Reverising the order.</span>
+					<br />For example, {@html math('2=x')} can be reordered to {@html math('x=2')}
+				</li>
+				<li>
+					<span class="emphasis">Adding/subtracting</span> the same quantity on both sides.
+					<br />For example, {@html math('x+2=4')} is equivalent to
+					{@html math('x+3=5')} by adding {@html math('1')} on both sides.
+					<br />
+					{@html math('x+2=4')} is also equivalent to {@html math('x=2')} by subtracting {@html math(
+						'2'
+					)} on both sides.
+				</li>
+				<li>
+					<span class="emphasis">Multiplying/dividing </span>the same non-zero quantity on both
+					sides.
+					<br />For example, {@html math('x+2=4')} is equivalent to
+					{@html math('2(x+2)=8')} and {@html math('\\frac{x+2}{2}=2')} by multiplying/dividing by {@html math(
+						'2'
+					)} on both sides.
+				</li>
+			</ul>
+		</div>
+	</section>
 </article>
 
 <nav class="flex justify-end">
-	<a
-		class="px-4 py-2 bg-green-100 underline"
-		rel="prefetch"
-		href="./01-introduction/manipulating-equations"
-	>
-		&raquo; Manipulating equations &raquo;
+	<a class="px-4 py-2 bg-green-100 underline" rel="prefetch" href={nextSectionSlug}>
+		&raquo; {nextSectionName} &raquo;
 	</a>
 </nav>

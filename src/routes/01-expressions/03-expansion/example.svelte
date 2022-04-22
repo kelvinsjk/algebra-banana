@@ -12,7 +12,7 @@
 	let example3 = false;
 	let pending = 0;
 
-	const title = 'Expansion';
+	const title = 'Algebraic Expansion';
 
 	let step1Start = false;
 	let step1End = false;
@@ -87,8 +87,12 @@
 
 <article class="prose flex-center mb-8">
 	<h1 class="mt-8 text-center">{title}</h1>
-	<section id="theory-container" class="theory-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Theory</h2>
+	<section
+		aria-labelledby="theory"
+		id="theory-container"
+		class="theory-container flex-center full-bleed px-2"
+	>
+		<h2 id="theory" class="mt-0">Theory</h2>
 		<p class="text-center max-w-prose">
 			Removing brackets/parentheses is one of the ways to simplify algebraic expressions. If only
 			one term is inside the parentheses, we just perform multiplication. For example, {@html math(
@@ -105,8 +109,12 @@
 		</p>
 	</section>
 	<ExamplePicker {options} bind:selectedIndex />
-	<section id="example-container" class="question-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Illustrated Example</h2>
+	<section
+		aria-labelledby="example"
+		id="example-container"
+		class="question-container flex-center full-bleed px-2"
+	>
+		<h2 id="example" class="mt-0">Illustrated Example</h2>
 		{#if example1}
 			<p class="text-center max-w-prose" transition:scale|local on:outroend={startExample}>
 				Simplify {@html math('-(3x-5).')}
@@ -125,11 +133,12 @@
 	</section>
 	{#if example3}
 		<section
+			aria-labelledby="mistake"
 			id="mistake-container"
 			class="mistake-container flex-center full-bleed px-2"
 			transition:slide|local
 		>
-			<h2 class="mt-0">Common Mistake</h2>
+			<h2 id="mistake" class="mt-0">Common Mistake</h2>
 			<p class="text-center max-w-prose">
 				One of the most common algebraic mistakes is in handling negative signs. For this example, a
 				common
@@ -141,8 +150,12 @@
 		</section>
 	{/if}
 
-	<section id="solution-container" class="example-container flex-center full-bleed px-2">
-		<h2 class="mt-0">Solution</h2>
+	<section
+		aria-labelledby="solution"
+		id="solution-container"
+		class="example-container flex-center full-bleed px-2"
+	>
+		<h2 id="solution" class="mt-0">Solution</h2>
 		<button
 			transition:scale|local
 			class="btn btn-primary btn-sm mb-5 transition-all duration-500 whitespace-nowrap"

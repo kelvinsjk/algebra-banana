@@ -53,7 +53,7 @@
 			...kbOptions,
 			onContentDidChange: updateValue,
 			onFocus: focusScroll,
-			customVirtualKeyboardLayers: pure ? pureFractionLayer : fractionLayer,
+			customVirtualKeyboardLayers: pure ? pureFractionLayer : fractionLayer
 		});
 		mathliveElement.addEventListener('keydown', (e) => {
 			if (e.key === 'Enter') {
@@ -72,7 +72,9 @@
 	}
 	function updateValue(mathfield) {
 		const mathfieldValue = mathfield.getValue();
-		const [valid, values] = pure ? isValidFraction(mathfield.getValue()) : isValid(mathfield.getValue());
+		const [valid, values] = pure
+			? isValidFraction(mathfield.getValue())
+			: isValid(mathfield.getValue());
 		if (valid) {
 			({ type, fraction: value, simplified } = values);
 			invalid = false;
@@ -100,7 +102,7 @@
 			mathliveElement.disabled = true;
 			mathliveElement.virtualKeyboardMode = 'off';
 			mathliveElement.setOptions({
-				onFocus: () => {},
+				onFocus: () => {}
 			});
 		}
 	} else {
@@ -108,7 +110,7 @@
 			mathliveElement.disabled = false;
 			mathliveElement.virtualKeyboardMode = 'onfocus';
 			mathliveElement.setOptions({
-				onFocus: focusScroll,
+				onFocus: focusScroll
 			});
 		}
 	}
@@ -118,7 +120,7 @@
 	{#if loading}
 		<div>loading...</div>
 	{:else}
-		<div class="flex items-center justify-end gap-2 mx-2 transition-all duration-500 border" in:slide>
+		<div class="flex items-center justify-end gap-2 mx-2 transition-all duration-500" in:slide>
 			{#if name}
 				<span>{@html nameString}</span>
 			{/if}

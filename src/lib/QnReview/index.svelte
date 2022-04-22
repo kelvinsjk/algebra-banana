@@ -6,8 +6,13 @@
 </script>
 
 {#if submitted}
-	<section id="qn-review-solution" class="flex-center" transition:slide|local>
-		<h2>Review</h2>
+	<section
+		aria-labelledby="review"
+		id="qn-review-solution"
+		class="flex-center"
+		transition:slide|local
+	>
+		<h2 id="review">Review</h2>
 		<section id="review-container">
 			{#if marks === 2}
 				✅ ✅ Correct! Well done!
@@ -18,9 +23,11 @@
 			{/if}
 		</section>
 
-		<h2>Solution</h2>
-		<section id="solution-container">
-			{@html working}
+		<section aria-labelledby="solution" id="solution-container" class="text-center">
+			<h2 id="solution">Solution</h2>
+			<div>
+				{@html working}
+			</div>
 		</section>
 	</section>
 {/if}
